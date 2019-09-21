@@ -1,0 +1,1301 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:date="http://exslt.org/dates-and-times">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Dorean - Planner</title>
+    <meta name="GENERATOR" content="Planner HTML output" />
+    <style type="text/css">
+
+html,body,table { 
+ font-family: "Bitstream Vera Sans", helvetica, Arial, sans-serif;
+ font-size: 12px;
+ white-space: nowrap;
+}
+
+tr,td,th,table,font,span,div,h1,h2,h3 {
+ font-family: "Bitstream Vera Sans", helvetica, Arial, sans-serif;
+}
+
+h1 {
+ font-size: 16px;
+}
+
+h2 {
+ font-size: 12px;
+ margin-bottom: 2px;
+}
+
+div.separator {
+ margin: 1em;
+}
+
+/*
+ * Header
+ */
+table.proj-header {
+ border: 0;
+ margin: 0;
+ width: auto;
+}
+
+table.proj-header .header {
+ font-weight: bold;
+}
+
+/*
+ * Footer
+ */
+.footer {
+ float: left;
+ width: 100%;
+ margin-top: 50px;  
+ padding-top: 2px;
+ border-style: dotted;
+ border-width: 1px 0 0 0;
+ border-color: #999;
+ font-size: 9px;
+ text-align: right;
+ clear: both;
+ color: #666;
+}
+
+a:link, a:visited {
+ text-decoration: none;
+ color: #666;
+}
+
+a:hover[href] {
+ text-decoration: underline;
+}
+
+
+/*
+ * Layout
+ */
+
+.gantt, .gantt-tasklist, .gantt-chart, .tasklist, .resourcelist {
+ float: left;
+}
+
+.gantt-tasklist, .gantt-chart, .tasklist-table, .resourcelist-table {
+ border-style: solid;
+ border-width: 1px;
+ border-color: #aaa;
+}
+
+.gantt-tasklist, .gantt-chart, .tasklist, .resourcelist {
+ overflow: auto;
+}
+
+.gantt, .tasklist, .resourcelist {
+  clear: both;
+  width: 100%;
+}
+
+.gantt-tasklist {
+ border-width: 1px 0px 1px 1px;
+ width: 30%;
+}
+
+.gantt-chart {
+ border-color: #aaa #aaa #aaa #fff;
+ width: 69.5%;
+}
+
+.tasklist, .resourcelist {
+ clear: left;
+}
+
+table {
+ width: 100%;
+ border-collapse: collapse;
+ border-style: none;
+ border-color: #fff;
+ white-space: nowrap;
+ margin: 0;
+}
+
+tr, td, th {
+ white-space: nowrap;
+ vertical-align: top;
+ padding-top: 1px;
+ padding-bottom: 1px;
+}
+
+th {
+ vertical-align: top;
+}
+
+tr {
+ height: 1.5em;
+}
+
+tr.header {
+ background-color: #aaa;
+ color: #fff;
+}
+
+tr.even {
+ background-color: #eee;
+}
+
+tr.odd {
+ background-color: #fff;
+}
+
+th span, td span {
+ margin-left: 6px;
+ margin-right: 6px;
+}
+
+th.note {
+ min-width: 20em;
+}
+
+td.note {
+ white-space: normal;
+}
+
+/*
+ * Gantt
+ */
+div.gantt-empty-begin, div.gantt-empty-end, div.gantt-complete-done, div.gantt-complete-notdone, div.gantt-summary {
+ overflow: hidden;
+ clear: none;
+ float: left; 
+ height: 0.75em;
+ margin-top: 0.15em;
+ margin-bottom: 0;
+}
+
+div.gantt-complete-done {
+ background-color: #495f6b;
+ height: 0.75em;
+ margin-top: 0;
+ margin-bottom: 0;
+}
+
+div.gantt-complete-notdone {
+ background-color: #8db6cd;
+ border-style: solid;
+ border-width: 1px;
+}
+
+div.gantt-summary {
+ height: 0.3em;
+ margin-top: 0.25em;
+ border-bottom: 2px dashed #000;
+}
+
+div.gantt-empty-end {
+ margin-left: 0;
+}
+
+div.gantt-milestone {
+ float: left;
+ font-size: 0.9em;
+ color: #000000;
+ position: relative;
+ margin-left: 0;
+ margin-right: 0;
+}
+
+div.gantt-resources {
+ float: left;
+ margin-left: 0.5em;
+ white-space: nowrap;
+}
+
+th.gantt-1day-header {
+  width: 19px;
+}
+
+th.gantt-2day-header {
+  width: 39px;
+}
+
+th.gantt-3day-header {
+  width: 59px;
+}
+
+th.gantt-4day-header {
+  width: 79px;
+}
+
+th.gantt-5day-header {
+  width: 99px;
+}
+
+th.gantt-6day-header {
+  width: 119px;
+}
+
+th.gantt-week-header, .gantt-resources {
+ width: 139px;
+}
+
+th.gantt-day-header {
+ margin: 0;
+ padding-top: 1px;
+ padding-bottom: 1px;
+ width: 19px;
+}
+
+</style>
+<!--[if IE]><style type="text/css">
+
+/* IE specific overrides to compensate for the different box model used by IE
+ * (see http://en.wikipedia.org/wiki/Internet_Explorer_box_model_bug)
+ */
+
+.gantt-resources {
+  overflow: hidden;
+}
+
+
+.tasklist, .resourcelist {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 1em;
+}
+
+
+.gantt-tasklist, .gantt-chart {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+
+.gantt-chart {
+  padding-bottom: 1px;
+}
+
+
+
+.tasklist-table, .resourcelist-table {
+  width: 99.8%;
+}
+
+/*
+div.gantt-empty-begin, div.gantt-empty-end, div.gantt-complete-done, div.gantt-complete-notdone, div.gantt-summary {
+ height: 1.75em;
+}
+
+div.gantt-complete-done {
+ height: 0.75em;
+}
+
+div.gantt-summary {
+ height: 0.3em;
+}
+*/
+th.gantt-1day-header {
+  width: 20px;
+}
+
+th.gantt-2day-header {
+  width: 40px;
+}
+
+th.gantt-3day-header {
+  width: 60px;
+}
+
+th.gantt-4day-header {
+  width: 80px;
+}
+
+th.gantt-5day-header {
+  width: 100px;
+}
+
+th.gantt-6day-header {
+  width: 120px;
+}
+
+th.gantt-week-header {
+ width: 140px;
+}
+
+th.gantt-day-header {
+ width: 20px;
+}
+
+</style><![endif]-->
+<!--[if gte IE 7]><style type="text/css">
+
+.gantt-chart {
+  padding-bottom: 0px;
+}
+
+</style><![endif]-->
+  </head>
+  <body>
+    <h1 class="proj-title">
+      <a name="project" id="project">Dorean</a>
+    </h1>
+    <table class="proj-header">
+      <tr>
+        <td class="header">Encargado:</td>
+        <td>Edward Camilo Gonzalez Arango</td>
+      </tr>
+      <tr>
+        <td class="header">Inicio:</td>
+        <td>31 julio, 2018</td>
+      </tr>
+      <tr>
+        <td class="header">Fin:</td>
+        <td>13 agosto, 2018</td>
+      </tr>
+      <tr>
+        <td class="header">Fecha de informe:</td>
+        <td>20 agosto, 2018</td>
+      </tr>
+    </table>
+    <div class="separator"></div>
+    <div class="gantt">
+      <h2>
+        <a name="gantt" id="gantt">Gráfica Gantt</a>
+      </h2>
+      <div class="gantt-tasklist">
+        <table cellspacing="0" cellpadding="0" border="1">
+          <tr class="header" align="left">
+            <th>
+              <span>WBS</span>
+            </th>
+            <th>
+              <span>Nombre</span>
+            </th>
+            <th>
+              <span>Trabajo</span>
+            </th>
+          </tr>
+          <tr class="header">
+            <th> </th>
+            <th> </th>
+            <th> </th>
+          </tr>
+          <tr class="odd">
+            <td>
+              <span>1</span>
+            </td>
+            <td>
+              <a name="gantt-1" style="white-space: nowrap; margin-left: 0px;" id="gantt-1">
+                <span>Analisis</span>
+              </a>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>
+              <span>2</span>
+            </td>
+            <td>
+              <a name="gantt-2" style="white-space: nowrap; margin-left: 0px;" id="gantt-2">
+                <span>Analisis2</span>
+              </a>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>
+              <span>3</span>
+            </td>
+            <td>
+              <a name="gantt-3" style="white-space: nowrap; margin-left: 0px;" id="gantt-3">
+                <span>Planeacion1</span>
+              </a>
+            </td>
+            <td>
+              <span>2d </span>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>
+              <span>4</span>
+            </td>
+            <td>
+              <a name="gantt-4" style="white-space: nowrap; margin-left: 0px;" id="gantt-4">
+                <span>Desarrollo1</span>
+              </a>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>
+              <span>5</span>
+            </td>
+            <td>
+              <a name="gantt-5" style="white-space: nowrap; margin-left: 0px;" id="gantt-5">
+                <span>Planeacion2</span>
+              </a>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>
+              <span>6</span>
+            </td>
+            <td>
+              <a name="gantt-6" style="white-space: nowrap; margin-left: 0px;" id="gantt-6">
+                <span>Planeacion3</span>
+              </a>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>
+              <span>7</span>
+            </td>
+            <td>
+              <a name="gantt-7" style="white-space: nowrap; margin-left: 0px;" id="gantt-7">
+                <span>Planeacion4</span>
+              </a>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>
+              <span>8</span>
+            </td>
+            <td>
+              <a name="gantt-8" style="white-space: nowrap; margin-left: 0px;" id="gantt-8">
+                <span>Planeacion5</span>
+              </a>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>
+              <span>9</span>
+            </td>
+            <td>
+              <a name="gantt-9" style="white-space: nowrap; margin-left: 0px;" id="gantt-9">
+                <span>Desarrollo2</span>
+              </a>
+            </td>
+            <td>
+              <span></span>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>
+              <span>10</span>
+            </td>
+            <td>
+              <a name="gantt-10" style="white-space: nowrap; margin-left: 0px;" id="gantt-10">
+                <span>Desarrollo3</span>
+              </a>
+            </td>
+            <td>
+              <span></span>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>
+              <span>11</span>
+            </td>
+            <td>
+              <a name="gantt-11" style="white-space: nowrap; margin-left: 0px;" id="gantt-11">
+                <span>Desarrollo4</span>
+              </a>
+            </td>
+            <td>
+              <span></span>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="gantt-chart">
+        <table cellspacing="0" cellpadding="0" border="1" style="table-layout: fixed;">
+          <tr class="header" align="left">
+            <th class="gantt-5day-header" colspan="5"></th>
+            <th class="gantt-week-header" align="center" colspan="7">Semana 32, 2018</th>
+            <th class="gantt-week-header" align="center" colspan="7">Semana 33, 2018</th>
+            <th class="gantt-week-header" align="center" colspan="7">Semana 34, 2018</th>
+            <th class="gantt-4day-header" colspan="4"></th>
+            <th></th>
+          </tr>
+          <tr class="header" align="left">
+            <th class="gantt-day-header" align="center">1</th>
+            <th class="gantt-day-header" align="center">2</th>
+            <th class="gantt-day-header" align="center">3</th>
+            <th class="gantt-day-header" align="center">4</th>
+            <th class="gantt-day-header" align="center">5</th>
+            <th class="gantt-day-header" align="center">6</th>
+            <th class="gantt-day-header" align="center">7</th>
+            <th class="gantt-day-header" align="center">8</th>
+            <th class="gantt-day-header" align="center">9</th>
+            <th class="gantt-day-header" align="center">10</th>
+            <th class="gantt-day-header" align="center">11</th>
+            <th class="gantt-day-header" align="center">12</th>
+            <th class="gantt-day-header" align="center">13</th>
+            <th class="gantt-day-header" align="center">14</th>
+            <th class="gantt-day-header" align="center">15</th>
+            <th class="gantt-day-header" align="center">16</th>
+            <th class="gantt-day-header" align="center">17</th>
+            <th class="gantt-day-header" align="center">18</th>
+            <th class="gantt-day-header" align="center">19</th>
+            <th class="gantt-day-header" align="center">20</th>
+            <th class="gantt-day-header" align="center">21</th>
+            <th class="gantt-day-header" align="center">22</th>
+            <th class="gantt-day-header" align="center">23</th>
+            <th class="gantt-day-header" align="center">24</th>
+            <th class="gantt-day-header" align="center">25</th>
+            <th class="gantt-day-header" align="center">26</th>
+            <th class="gantt-day-header" align="center">27</th>
+            <th class="gantt-day-header" align="center">28</th>
+            <th class="gantt-day-header" align="center">29</th>
+            <th class="gantt-day-header" align="center">30</th>
+            <th align="center"></th>
+          </tr>
+          <tr class="odd">
+            <td colspan="31">
+              <div style="width: 601px; white-space: nowrap;">
+                <div class="gantt-empty-begin" style="width: 6px;"></div>
+                <div class="gantt-complete-notdone" style="width: 2px;">
+                  <div class="gantt-complete-done" style="width: 2px;"></div>
+                </div>
+                <div class="gantt-empty-end"></div>
+                <div class="gantt-resources">Edanalisis, comunidad, SoPortable</div>
+              </div>
+            </td>
+          </tr>
+          <tr class="even">
+            <td colspan="31">
+              <div style="width: 601px; white-space: nowrap;">
+                <div class="gantt-empty-begin" style="width: 46px;"></div>
+                <div class="gantt-complete-notdone" style="width: 2px;">
+                  <div class="gantt-complete-done" style="width: 2px;"></div>
+                </div>
+                <div class="gantt-empty-end"></div>
+                <div class="gantt-resources">Edanalisis, comunidad, SoPortable</div>
+              </div>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td colspan="31">
+              <div style="width: 601px; white-space: nowrap;">
+                <div class="gantt-empty-begin" style="width: 106px;"></div>
+                <div class="gantt-complete-notdone" style="width: 8px;"></div>
+                <div class="gantt-empty-end"></div>
+                <div class="gantt-resources">Edanalisis, SoPortable</div>
+              </div>
+            </td>
+          </tr>
+          <tr class="even">
+            <td colspan="31">
+              <div style="width: 601px; white-space: nowrap;">
+                <div class="gantt-empty-begin" style="width: 126px;"></div>
+                <div class="gantt-complete-notdone" style="width: 2px;">
+                  <div class="gantt-complete-done" style="width: 2px;"></div>
+                </div>
+                <div class="gantt-empty-end"></div>
+                <div class="gantt-resources">Edesarrollo, comunidad, SoLocal, SoPortable</div>
+              </div>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td colspan="31">
+              <div style="width: 601px; white-space: nowrap;">
+                <div class="gantt-empty-begin" style="width: 146px;"></div>
+                <div class="gantt-complete-notdone" style="width: 2px;">
+                  <div class="gantt-complete-done" style="width: 2px;"></div>
+                </div>
+                <div class="gantt-empty-end"></div>
+                <div class="gantt-resources">Edanalisis, comunidad, SoPortable</div>
+              </div>
+            </td>
+          </tr>
+          <tr class="even">
+            <td colspan="31">
+              <div style="width: 601px; white-space: nowrap;">
+                <div class="gantt-empty-begin" style="width: 166px;"></div>
+                <div class="gantt-complete-notdone" style="width: 4px;">
+                  <div class="gantt-complete-done" style="width: 4px;"></div>
+                </div>
+                <div class="gantt-empty-end"></div>
+                <div class="gantt-resources">Edanalisis, SoLocal</div>
+              </div>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td colspan="31">
+              <div style="width: 601px; white-space: nowrap;">
+                <div class="gantt-empty-begin" style="width: 186px;"></div>
+                <div class="gantt-complete-notdone" style="width: 4px;">
+                  <div class="gantt-complete-done" style="width: 4px;"></div>
+                </div>
+                <div class="gantt-empty-end"></div>
+                <div class="gantt-resources">Edanalisis, SoPortable</div>
+              </div>
+            </td>
+          </tr>
+          <tr class="even">
+            <td colspan="31">
+              <div style="width: 601px; white-space: nowrap;">
+                <div class="gantt-empty-begin" style="width: 246px;"></div>
+                <div class="gantt-complete-notdone" style="width: 4px;">
+                  <div class="gantt-complete-done" style="width: 4px;"></div>
+                </div>
+                <div class="gantt-empty-end"></div>
+                <div class="gantt-resources">Edanalisis, SoPortable</div>
+              </div>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td colspan="31">
+              <div style="width: 601px; white-space: nowrap;">
+                <div class="gantt-empty-begin" style="width: 242px;"></div>
+                <div class="gantt-milestone">◆</div>
+                <div class="gantt-resources">Edesarrollo, SoPortable</div>
+              </div>
+            </td>
+          </tr>
+          <tr class="even">
+            <td colspan="31">
+              <div style="width: 601px; white-space: nowrap;">
+                <div class="gantt-empty-begin" style="width: 242px;"></div>
+                <div class="gantt-milestone">◆</div>
+                <div class="gantt-resources">Edesarrollo, comunidad, SoLocal, SoPortable</div>
+              </div>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td colspan="31">
+              <div style="width: 601px; white-space: nowrap;">
+                <div class="gantt-empty-begin" style="width: 242px;"></div>
+                <div class="gantt-milestone">◆</div>
+                <div class="gantt-resources">Edesarrollo, comunidad, SoLocal, SoPortable</div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="separator"></div>
+    <div class="tasklist">
+      <h2>
+        <a name="tasks" id="tasks">Tareas</a>
+      </h2>
+      <div class="tasklist-table">
+        <table cellspacing="0" cellpadding="0" border="1">
+          <tr class="header" align="left">
+            <th>
+              <span>WBS</span>
+            </th>
+            <th>
+              <span>Nombre</span>
+            </th>
+            <th>
+              <span>Inicio</span>
+            </th>
+            <th>
+              <span>Fin</span>
+            </th>
+            <th>
+              <span>Trabajo</span>
+            </th>
+            <th>
+              <span>Terminado</span>
+            </th>
+            <th>
+              <span>Coste</span>
+            </th>
+            <th>
+              <span>Asignado a</span>
+            </th>
+            <th class="note">
+              <span>Notes</span>
+            </th>
+          </tr>
+          <tr class="odd" style="">
+            <td>
+              <span>1</span>
+            </td>
+            <td>
+              <a name="task1" style="margin-left: 0px" id="task1">
+                <span>Analisis</span>
+              </a>
+            </td>
+            <td>
+              <span>Aug 1</span>
+            </td>
+            <td>
+              <span>Aug 1</span>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+            <td>
+              <span>100%
+              </span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>Edanalisis, comunidad, SoPortable</td>
+            <td class="note">
+              <span>En esta etapa se busca, analizar las problematicas 
+referentes al uso del Software Libre en general.
+
+
+Resolucion:
+
+Se detecta que la linea de aprendizaje de sistemas 
+operativos GNU-Linux, es el item que mas apacigua al
+usuario inexperto en el uso de estos sistemas</span>
+            </td>
+          </tr>
+          <tr class="even" style="">
+            <td>
+              <span>2</span>
+            </td>
+            <td>
+              <a name="task2" style="margin-left: 0px" id="task2">
+                <span>Analisis2</span>
+              </a>
+            </td>
+            <td>
+              <span>Aug 3</span>
+            </td>
+            <td>
+              <span>Aug 3</span>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+            <td>
+              <span>100%
+              </span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>Edanalisis, comunidad, SoPortable</td>
+            <td class="note">
+              <span>En esta etapa, se evaluan las caracteristicas de sistemas
+operativos GNU-Linux, con el fin de encontrar el 
+sistema con una curva de aprendizaje mas liviana para
+usuarios iniciantes o que provienen de Windows o Mac
+
+
+Nota: Se detecta que los sistemas GNU-Linux 
+mas usados por usuarios provenientes de otros sistemas 
+es Ubuntu y su variable root es Debian </span>
+            </td>
+          </tr>
+          <tr class="odd" style="">
+            <td>
+              <span>3</span>
+            </td>
+            <td>
+              <a name="task3" style="margin-left: 0px" id="task3">
+                <span>Planeacion1</span>
+              </a>
+            </td>
+            <td>
+              <span>Aug 6</span>
+            </td>
+            <td>
+              <span>Aug 6</span>
+            </td>
+            <td>
+              <span>2d </span>
+            </td>
+            <td>
+              <span>0%
+              </span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>Edanalisis, SoPortable</td>
+            <td class="note">
+              <span>En esta etapa se evaluan posibilidades de desarrollo
+
+
+Se resuelve que se pueden generar los siguientes 
+desarrollos:
+-Aplicativo Web que tome por medio de mineria de datos
+de las fuentes oficiales de Gnu-Linux Informacion y 
+la organice en un formulario
+-Aplicativo escritorio Debian que informe sobre los 
+recursos usados por el sistema operativo
+-Aplicativo multidispositivo con informacion sobre Software 
+Libre</span>
+            </td>
+          </tr>
+          <tr class="even" style="">
+            <td>
+              <span>4</span>
+            </td>
+            <td>
+              <a name="task4" style="margin-left: 0px" id="task4">
+                <span>Desarrollo1</span>
+              </a>
+            </td>
+            <td>
+              <span>Aug 7</span>
+            </td>
+            <td>
+              <span>Aug 7</span>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+            <td>
+              <span>100%
+              </span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>Edesarrollo, comunidad, SoLocal, SoPortable</td>
+            <td class="note">
+              <span>En esta etapa se elabora un Spider-Crawling con el 
+sitio https://www.gnu.org/software/
+
+
+Se concluye que este metodo no es el mejor a usar, 
+debido a que al tratarse de un crawl, la pagina intersepto
+la informacion detectando un robot y los datos solo se
+pudieron extraer una vez.
+
+</span>
+            </td>
+          </tr>
+          <tr class="odd" style="">
+            <td>
+              <span>5</span>
+            </td>
+            <td>
+              <a name="task5" style="margin-left: 0px" id="task5">
+                <span>Planeacion2</span>
+              </a>
+            </td>
+            <td>
+              <span>Aug 8</span>
+            </td>
+            <td>
+              <span>Aug 8</span>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+            <td>
+              <span>100%
+              </span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>Edanalisis, comunidad, SoPortable</td>
+            <td class="note">
+              <span>En esta etapa se busca solventar el inconveniente con 
+los crawlin y buscar un metodo de obtener informacion
+de la paqueteria oficial de GNU-Linux
+
+Se resuelve usar directamente la paqueteria interna
+del sistema por medio de apt
+la funcion a usar sera:
+apt-cache 
+	con parametros:
+		show
+		search
+		"Segun el caso"</span>
+            </td>
+          </tr>
+          <tr class="even" style="">
+            <td>
+              <span>6</span>
+            </td>
+            <td>
+              <a name="task6" style="margin-left: 0px" id="task6">
+                <span>Planeacion3</span>
+              </a>
+            </td>
+            <td>
+              <span>Aug 9</span>
+            </td>
+            <td>
+              <span>Aug 9</span>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+            <td>
+              <span>100%
+              </span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>Edanalisis, SoLocal</td>
+            <td class="note">
+              <span>En esta etapa se debe solucionar que tipo de desarrollo
+se va a realizar
+
+-Se decide optar por un desarrollo de escritorio para 
+distribuciones Debian, debido a que el proyecto se basa
+en requerimientos de la Free Software Foundation
+
+</span>
+            </td>
+          </tr>
+          <tr class="odd" style="">
+            <td>
+              <span>7</span>
+            </td>
+            <td>
+              <a name="task7" style="margin-left: 0px" id="task7">
+                <span>Planeacion4</span>
+              </a>
+            </td>
+            <td>
+              <span>Aug 10</span>
+            </td>
+            <td>
+              <span>Aug 10</span>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+            <td>
+              <span>100%
+              </span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>Edanalisis, SoPortable</td>
+            <td class="note">
+              <span>En esta etapa se debe solucionar la manera que pueda
+generar mas didactica y acercamiento con las herramientas
+del sistema sin perder la facilidad de uso
+
+
+Se decide trabajar con python debido a la dinamica 
+sencilla en que se puede trabajar por medio del interprete
+de python, que los usuarios podran entender por medio 
+de un aplicativo Bash sencillo en modo de instalador
+pero que explique cada uno de los pasos a seguir con
+la ejecucion del aplicativo traducido en algunos idiomas
+aun no definidos 
+</span>
+            </td>
+          </tr>
+          <tr class="even" style="">
+            <td>
+              <span>8</span>
+            </td>
+            <td>
+              <a name="task8" style="margin-left: 0px" id="task8">
+                <span>Planeacion5</span>
+              </a>
+            </td>
+            <td>
+              <span>Aug 13</span>
+            </td>
+            <td>
+              <span>Aug 13</span>
+            </td>
+            <td>
+              <span>1d </span>
+            </td>
+            <td>
+              <span>100%
+              </span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>Edanalisis, SoPortable</td>
+            <td class="note">
+              <span>En esta etapa ya decidido el lenguaje a usar y el desarrollo
+a implementar, se deben solucionar las librerias  que se
+cargaran con el interprete y generar un entorno de
+desarrollo aislado para su funcionamiento en un 
+entorno seguro
+
+Se decide trabajar con las librerias.
+pip        18.0   
+PyQt5      5.11.2 
+PyQt5-sip  4.19.12
+setuptools 40.1.0 
+wheel      0.31.1 
+Version de Python:  3.5.2
+
+Sistema de alojamiento: Ubuntu 16.04 Portable
+Ruta entorno de desarrollo:
+/home/dorean/entornolinux/bin/python
+
+Ruta script de activacion del entorno:
+/home/dorean/entornolinux/bin/activate
+</span>
+            </td>
+          </tr>
+          <tr class="odd" style="">
+            <td>
+              <span>9</span>
+            </td>
+            <td>
+              <a name="task9" style="margin-left: 0px" id="task9">
+                <span>Desarrollo2</span>
+              </a>
+            </td>
+            <td>
+              <span>Aug 13</span>
+            </td>
+            <td>
+              <span>Aug 13</span>
+            </td>
+            <td></td>
+            <td></td>
+            <td>
+              <span></span>
+            </td>
+            <td>Edesarrollo, SoPortable</td>
+            <td class="note">
+              <span>Desarrollo de interface grafica.
+Esta se desarrollara de manera aislada y siguiendo una 
+metodologia
+Modelo - Vista - Template
+en la cual la plantilla o plantillas seran elaboradas con la 
+tecnologia Qt generando archivos de interfaces .ui
+
+Sistema de alojamineto: Ubuntu 16.04 portable
+Ruta de interfaces: /home/dorean/interfaces</span>
+            </td>
+          </tr>
+          <tr class="even" style="">
+            <td>
+              <span>10</span>
+            </td>
+            <td>
+              <a name="task10" style="margin-left: 0px" id="task10">
+                <span>Desarrollo3</span>
+              </a>
+            </td>
+            <td>
+              <span>Aug 13</span>
+            </td>
+            <td>
+              <span>Aug 13</span>
+            </td>
+            <td></td>
+            <td></td>
+            <td>
+              <span></span>
+            </td>
+            <td>Edesarrollo, comunidad, SoLocal, SoPortable</td>
+            <td class="note">
+              <span>Desarrollo de logica python:
+
+-Clase principal
+-Contructor
+-Clases de llamado a interfaces y a 
+scripts .bash[No elaborados]
+
+</span>
+            </td>
+          </tr>
+          <tr class="odd" style="">
+            <td>
+              <span>11</span>
+            </td>
+            <td>
+              <a name="task11" style="margin-left: 0px" id="task11">
+                <span>Desarrollo4</span>
+              </a>
+            </td>
+            <td>
+              <span>Aug 13</span>
+            </td>
+            <td>
+              <span>Aug 13</span>
+            </td>
+            <td></td>
+            <td></td>
+            <td>
+              <span></span>
+            </td>
+            <td>Edesarrollo, comunidad, SoLocal, SoPortable</td>
+            <td class="note">
+              <span>Desarrollo de logica para scripts .bash
+que conecten a recursos del Sistema debian</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="separator"></div>
+    <div class="resourcelist">
+      <h2>
+        <a name="resources" id="resources">Recursos</a>
+      </h2>
+      <div class="resourcelist-table">
+        <table cellspacing="0" cellpadding="0" border="1" width="100%">
+          <tr class="header" align="left">
+            <th>
+              <span>Nombre</span>
+            </th>
+            <th>
+              <span>Nombre corto</span>
+            </th>
+            <th>
+              <span>Tipo</span>
+            </th>
+            <th>
+              <span>Grupo</span>
+            </th>
+            <th>
+              <span>Correo-e</span>
+            </th>
+            <th>
+              <span>Coste</span>
+            </th>
+          </tr>
+          <tr class="odd">
+            <td>
+              <a name="res-3" id="res-3">
+                <span>Comunidad Linux</span>
+              </a>
+            </td>
+            <td>
+              <span>comunidad</span>
+            </td>
+            <td>
+              <span>Trabajo</span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>
+              <a href="mailto:https://www.fsf.org/es,http://foro.ubuntu-guia.com/">
+                <span>https://www.fsf.org/es,http://foro.ubuntu-guia.com/</span>
+              </a>
+            </td>
+            <td align="right">
+              <span>0</span>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>
+              <a name="res-1" id="res-1">
+                <span>Edward Gonzalez Analisis </span>
+              </a>
+            </td>
+            <td>
+              <span>Edanalisis</span>
+            </td>
+            <td>
+              <span>Trabajo</span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>
+              <a href="mailto:edward1577@gmail.com">
+                <span>edward1577@gmail.com</span>
+              </a>
+            </td>
+            <td align="right">
+              <span>0</span>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>
+              <a name="res-2" id="res-2">
+                <span>Edward Gonzalez Desarrollo</span>
+              </a>
+            </td>
+            <td>
+              <span>Edesarrollo</span>
+            </td>
+            <td>
+              <span>Trabajo</span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>
+              <a href="mailto:ecgonzalez71@misena.edu.co">
+                <span>ecgonzalez71@misena.edu.co</span>
+              </a>
+            </td>
+            <td align="right">
+              <span>0</span>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>
+              <a name="res-4" id="res-4">
+                <span>Ubuntu Local</span>
+              </a>
+            </td>
+            <td>
+              <span>SoLocal</span>
+            </td>
+            <td>
+              <span>Material</span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>
+              <a href="mailto:">
+                <span></span>
+              </a>
+            </td>
+            <td align="right">
+              <span>0</span>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>
+              <a name="res-5" id="res-5">
+                <span>Ubuntu Portable</span>
+              </a>
+            </td>
+            <td>
+              <span>SoPortable</span>
+            </td>
+            <td>
+              <span>Material</span>
+            </td>
+            <td>
+              <span></span>
+            </td>
+            <td>
+              <a href="mailto:">
+                <span></span>
+              </a>
+            </td>
+            <td align="right">
+              <span>0</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="footer">
+      <div>Este archivo fue generado por 
+      <a href="http://live.gnome.org/Planner/" style="text-decoration: underline;">Planner</a></div>
+    </div>
+  </body>
+</html>
