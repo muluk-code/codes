@@ -1,0 +1,529 @@
+<vpinicio>:
+	id: contenido
+	Screen:
+		name: contenido.ventanau
+		BoxLayout:
+			padding: 5
+			orientation: "vertical"
+			canvas:
+
+				Color: 
+					rgb: contenido.colordos
+				Rectangle:
+					pos: self.pos 
+					size: self.size
+			
+			BoxLayout:
+				padding: 5
+				size_hint: contenido.tamanos[0]
+				canvas:
+					Color: 
+						rgb: contenido.coloruno
+					Rectangle:
+						pos: self.pos 
+						size: self.size
+				Button:
+					text: contenido.pantallat
+					on_press: root.current = contenido.ventanat	
+				Button:
+					text: contenido.pantallad
+					on_press: root.current = contenido.ventanad
+			BoxLayout:
+				size_hint: contenido.tamanos[1]
+				orientation: "vertical"
+				canvas:
+					Color: 
+						rgb: contenido.colordos
+					Rectangle:
+						pos: self.pos 
+						size: self.size
+				Label:
+					text: "Ingrese sus datos"
+					size_hint: contenido.tamanos[4]
+				BoxLayout:
+					size_hint: contenido.tamanos[5]
+					orientation: "vertical"
+					canvas:
+						Color:
+							rgb: contenido.coloruno
+						Rectangle:
+							pos: self.pos 
+							size: self.size
+					BoxLayout:
+						size_hint: contenido.tamanos[6]
+						orientation: "horizontal"
+						canvas:
+							Color:
+								rgb: contenido.colorcuatro
+							Rectangle:
+								pos: self.pos 
+								size: self.size
+
+					BoxLayout:
+						size_hint: contenido.tamanos[6]
+						orientation: "vertical"
+						canvas:
+							Color:
+								rgb: contenido.coloruno
+							Rectangle:
+								pos: self.pos 
+								size: self.size
+						
+						BoxLayout:
+							size_hint: contenido.tamanos[7]
+							orientation: "horizontal"
+							canvas:
+								Color:
+									rgb: contenido.colorcinco
+								Rectangle:
+									pos: self.pos 
+									size: self.size
+							Label:
+								text: "Usuario:"
+								size_hint: contenido.tamanos[3]
+						
+							TextInput:
+								size_hint: contenido.tamanos[3]
+								text: ""
+								multiline: False
+					BoxLayout:
+						size_hint: contenido.tamanos[6]
+						orientation: "horizontal"
+						canvas:
+							Color:
+								rgb: contenido.colorcuatro
+							Rectangle:
+								pos: self.pos 
+								size: self.size
+						
+					BoxLayout:
+						size_hint: contenido.tamanos[6]
+						orientation: "vertical"
+						canvas:
+							Color:
+								rgb: contenido.colordos
+							Rectangle:
+								pos: self.pos 
+								size: self.size
+						BoxLayout:
+							size_hint: contenido.tamanos[7]
+							orientation: "horizontal"
+							canvas:
+								Color:
+									rgb: contenido.colorcinco
+								Rectangle:
+									pos: self.pos 
+									size: self.size
+							Label:
+								text: "Clave:"
+								size_hint: contenido.tamanos[3]
+						
+							TextInput:
+								size_hint: contenido.tamanos[3]
+								text: ""
+								multiline: False
+					BoxLayout:
+						size_hint: contenido.tamanos[6]
+						orientation: "vertical"
+						canvas:
+							Color:
+								rgb: contenido.colordos
+							Rectangle:
+								pos: self.pos 
+								size: self.size
+						BoxLayout:
+							size_hint: contenido.tamanos[7]
+							orientation: "horizontal"
+							canvas:
+								Color:
+									rgb: contenido.colorcuatro
+								Rectangle:
+									pos: self.pos 
+									size: self.size
+						Button:
+							size_hint: contenido.tamanos[7]
+							pos: self.pos 
+							size: self.size
+							text: "Ingresar"
+							on_press: root.current = contenido.ventanaayuda
+
+			BoxLayout:
+				orientation: "horizontal"
+				size_hint: contenido.tamanos[2]
+				canvas:
+					Color: 
+						rgb: contenido.coloruno
+					Rectangle:
+						pos: self.pos 
+						size: self.size
+				BoxLayout:
+				
+					size_hint: contenido.tamanos[3]
+					canvas:
+						Color: 
+							rgb: contenido.coloruno
+						Rectangle:
+							pos: self.pos 
+							size: self.size
+					Label:
+						text: contenido.pantallau
+				BoxLayout:
+				
+					size_hint: contenido.tamanos[3]
+					canvas:
+						Color: 
+							rgb: contenido.coloruno
+						Rectangle:
+							pos: self.pos 
+							size: self.size
+					Button:
+						pos: self.pos 
+						size: self.size
+						text: contenido.pantallaayuda
+						on_press: root.current = contenido.ventanaayuda
+
+			
+	Screen:
+		name: contenido.ventanat
+		BoxLayout:
+			padding: 5
+			orientation: "vertical"
+			canvas:
+				Color: 
+					rgb: contenido.coloruno
+				Rectangle:
+					pos: self.pos 
+					size: self.size
+			
+			BoxLayout:
+				padding: 5
+				size_hint: contenido.tamanos[0]
+				canvas:
+					Color: 
+						rgb: contenido.colorcuatro
+					Rectangle:
+						pos: self.pos 
+						size: self.size
+				Button:
+					text: contenido.pantallau
+					on_press: root.current = contenido.ventanau
+				Button:
+					text: contenido.pantallad
+					on_press: root.current = contenido.ventanad
+			BoxLayout:
+				size_hint: contenido.tamanos[7]
+				orientation: "horizontal"
+				canvas:
+					Color:
+						rgb: contenido.colorcuatro
+					Rectangle:
+						pos: self.pos 
+						size: self.size
+				Label:
+					id: consss
+					text: "Pendientes:" + str(contenido.cantele)
+					size_hint: contenido.tamanos[3]
+				Button:
+					id: botonactitemns
+					size_hint: contenido.tamanos[3]
+					pos: self.pos 
+					size: self.size
+					text: "Actualizar Pendientes"
+					on_press: root.consulta()
+				Button:
+					id: botonpendientes
+					size_hint: contenido.tamanos[3]
+					pos: self.pos
+					size: self.size
+					text: "222222"
+					on_press: root.enviarpend()
+			BoxLayout:
+				orientation: "horizontal"
+				size_hint: contenido.tamanos[2]
+				canvas:
+					Color: 
+						rgb: contenido.colorcuatro
+					Rectangle:
+						pos: self.pos 
+						size: self.size
+				BoxLayout:
+				
+					size_hint: contenido.tamanos[3]
+					canvas:
+						Color: 
+							rgb: contenido.colorcuatro
+						Rectangle:
+							pos: self.pos 
+							size: self.size
+					Label:
+						text: contenido.pantallat
+				BoxLayout:
+				
+					size_hint: contenido.tamanos[3]
+					canvas:
+						Color: 
+							rgb: contenido.colorcuatro
+						Rectangle:
+							pos: self.pos 
+							size: self.size
+					Button:
+						pos: self.pos 
+						size: self.size
+						text: contenido.pantallaayuda
+						on_press: root.current = contenido.ventanaayuda
+
+	Screen:
+		name: contenido.ventanad
+		BoxLayout:
+			padding: 5
+			orientation: "vertical"
+			canvas:
+				Color: 
+					rgb: contenido.colorcuatro
+				Rectangle:
+					pos: self.pos 
+					size: self.size
+			
+			BoxLayout:
+				padding: 5
+				size_hint: contenido.tamanos[0]
+				canvas:
+					Color: 
+						rgb: contenido.colortres
+					Rectangle:
+						pos: self.pos 
+						size: self.size
+				Button:
+					pos: self.pos 
+					size: self.size
+					text: contenido.pantallau
+					on_press: root.current = contenido.ventanau
+				Button:
+					pos: self.pos 
+					size: self.size
+					text: contenido.pantallat
+					on_press: root.current = contenido.ventanat
+			BoxLayout:
+				size_hint: contenido.tamanos[1]
+				orientation: "vertical"
+				canvas:
+					Color: 
+						rgb: contenido.colordos
+					Rectangle:
+						pos: self.pos 
+						size: self.size
+				Label:
+					text: "Ingrese sus datos"
+					size_hint: contenido.tamanos[4]
+				BoxLayout:
+					size_hint: contenido.tamanos[5]
+					orientation: "vertical"
+					canvas:
+						Color:
+							rgb: contenido.coloruno
+						Rectangle:
+							pos: self.pos 
+							size: self.size
+					BoxLayout:
+						size_hint: contenido.tamanos[6]
+						orientation: "vertical"
+						canvas:
+							Color:
+								rgb: contenido.colorcuatro
+							Rectangle:
+								pos: self.pos 
+								size: self.size
+						BoxLayout:
+							size_hint: contenido.tamanos[7]
+							orientation: "horizontal"
+							canvas:
+								Color:
+									rgb: contenido.colorcuatro
+								Rectangle:
+									pos: self.pos 
+									size: self.size
+							Label:
+								text: "Tipo:"
+								size_hint: contenido.tamanos[3]
+						
+							Button:
+								id: botontipo
+								size_hint: contenido.tamanos[3]
+								pos: self.pos 
+								size: self.size
+								text: contenido.tipos[contenido.tip]
+								on_press: root.mas()
+					BoxLayout:
+						size_hint: contenido.tamanos[6]
+						orientation: "vertical"
+						canvas:
+							Color:
+								rgb: contenido.coloruno
+							Rectangle:
+								pos: self.pos 
+								size: self.size
+						
+						BoxLayout:
+							size_hint: contenido.tamanos[7]
+							orientation: "horizontal"
+							canvas:
+								Color:
+									rgb: contenido.colorcinco
+								Rectangle:
+									pos: self.pos 
+									size: self.size
+							Label:
+								text: "Activo:"
+								size_hint: contenido.tamanos[3]
+						
+							Button:
+								id: botonactivo
+								size_hint: contenido.tamanos[3]
+								pos: self.pos 
+								size: self.size
+								text: ""
+								on_press: root.activo()
+					BoxLayout:
+						size_hint: contenido.tamanos[6]
+						orientation: "horizontal"
+						canvas:
+							Color:
+								rgb: contenido.colorcuatro
+							Rectangle:
+								pos: self.pos 
+								size: self.size
+						Label:
+							text: "Descripcion:"
+							size_hint: contenido.tamanos[3]
+						
+						TextInput:
+							id: desc
+							size_hint: contenido.tamanos[3]
+							text: ""
+							multiline: False
+						
+					BoxLayout:
+						size_hint: contenido.tamanos[6]
+						orientation: "vertical"
+						canvas:
+							Color:
+								rgb: contenido.colordos
+							Rectangle:
+								pos: self.pos 
+								size: self.size
+						BoxLayout:
+							size_hint: contenido.tamanos[7]
+							orientation: "horizontal"
+							canvas:
+								Color:
+									rgb: contenido.colorcinco
+								Rectangle:
+									pos: self.pos 
+									size: self.size
+							Label:
+								text: "Fotografia:"
+								size_hint: contenido.tamanos[3]
+						
+							Button:
+								size_hint: contenido.tamanos[3]
+								pos: self.pos 
+								size: self.size
+								text: "Tomar"
+								on_press: root.current = contenido.ventanaayuda
+					BoxLayout:
+						size_hint: contenido.tamanos[6]
+						orientation: "vertical"
+						canvas:
+							Color:
+								rgb: contenido.colordos
+							Rectangle:
+								pos: self.pos 
+								size: self.size
+						BoxLayout:
+							size_hint: contenido.tamanos[7]
+							orientation: "horizontal"
+							canvas:
+								Color:
+									rgb: contenido.colorcuatro
+								Rectangle:
+									pos: self.pos 
+									size: self.size
+						Button:
+							size_hint: contenido.tamanos[7]
+							pos: self.pos 
+							size: self.size
+							text: "Guardar Registro"
+							on_press: root.enviar()
+			BoxLayout:
+				orientation: "horizontal"
+				size_hint: contenido.tamanos[2]
+				canvas:
+					Color: 
+						rgb: contenido.colortres
+					Rectangle:
+						pos: self.pos 
+						size: self.size
+				BoxLayout:
+				
+					size_hint: contenido.tamanos[3]
+					canvas:
+						Color: 
+							rgb: contenido.colortres
+						Rectangle:
+							pos: self.pos 
+							size: self.size
+					Label:
+						text: contenido.pantallad
+				BoxLayout:
+				
+					size_hint: contenido.tamanos[3]
+					canvas:
+						Color: 
+							rgb: contenido.colortres
+						Rectangle:
+							pos: self.pos 
+							size: self.size
+					Button:
+						pos: self.pos 
+						size: self.size
+						text: contenido.pantallaayuda
+						on_press: root.current = contenido.ventanaayuda	
+
+
+	Screen:
+		name: contenido.ventanaayuda
+		BoxLayout:
+			padding: 5
+			orientation: "vertical"
+			canvas:
+
+				Color: 
+					rgb: contenido.colordos
+				Rectangle:
+					pos: self.pos 
+					size: self.size
+			
+			BoxLayout:
+				padding: 5
+				size_hint: contenido.tamanos[4]
+				canvas:
+					Color: 
+						rgb: contenido.coloruno
+					Rectangle:
+						pos: self.pos 
+						size: self.size
+				Button:
+					text: "Salir"
+					on_press: root.current = contenido.ventanau
+			BoxLayout:
+				size_hint: contenido.tamanos[5]
+				canvas:
+					Color: 
+						rgb: contenido.colordos
+					Rectangle:
+						pos: self.pos 
+						size: self.size
+				Label:
+					text: contenido.pantallaayuda
+
+			
