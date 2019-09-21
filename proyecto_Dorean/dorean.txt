@@ -1,0 +1,5 @@
+Proyecto realizado en Python 3.
+
+Aplicación de Escritorio con herramientas para distribuciones Debian y herramienta informativa multiplataforma.
+
+Para mas información; puede descargar el directorio 'DocumentacionDorean.zip'
