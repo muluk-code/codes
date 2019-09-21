@@ -1,0 +1,5 @@
+Proyecto en desarrollo.
+
+Programa para controlador ATmega2560
+
+Aplicacion de escritorio, multiprocesos para interface y control de ejecución
